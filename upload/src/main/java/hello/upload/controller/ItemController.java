@@ -73,7 +73,7 @@ public class ItemController {
 
         log.info("uploadFileName={}", uploadFileName);
 
-        String encodedUploadFileName = UriUtils.encode(uploadFileName, StandardCharsets.UTF_8)
+        String encodedUploadFileName = UriUtils.encode(uploadFileName, StandardCharsets.UTF_8);
         String contentDisposition = "attachment; filename=\"" + encodedUploadFileName + "\"";
 
         return ResponseEntity.ok()

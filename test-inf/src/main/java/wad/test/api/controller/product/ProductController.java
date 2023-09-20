@@ -3,7 +3,7 @@ package wad.test.api.controller.product;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import wad.test.api.service.ProductService;
+import wad.test.api.service.product.ProductService;
 import wad.test.api.service.product.response.ProductResponse;
 
 import java.util.List;

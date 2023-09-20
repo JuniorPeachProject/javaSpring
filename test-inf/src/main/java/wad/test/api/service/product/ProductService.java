@@ -1,4 +1,4 @@
-package wad.test.api.service;
+package wad.test.api.service.product;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

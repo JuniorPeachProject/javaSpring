@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import wad.test.api.controller.order.request.OrderCreateRequest;
+import wad.test.api.controller.order.response.OrderResponse;
 import wad.test.api.service.order.OrderService;
 
 import java.time.LocalDateTime;
@@ -15,8 +16,8 @@ public class OrderController {
     private final OrderService orderService;
 
     @PostMapping("/api/v1/orders/new")
-    public void createOrder(@RequestBody OrderCreateRequest request) {
+    public OrderResponse createOrder(@RequestBody OrderCreateRequest request) {
         LocalDateTime registeredDateTime = LocalDateTime.now();
-        orderService.createOrder(request, registeredDateTime);
+        return orderService.createOrder(request, registeredDateTime);
     }
 }

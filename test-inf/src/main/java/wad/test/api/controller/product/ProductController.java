@@ -2,7 +2,9 @@ package wad.test.api.controller.product;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
+import wad.test.api.controller.product.dto.request.ProductCreateRequest;
 import wad.test.api.service.product.ProductService;
 import wad.test.api.service.product.response.ProductResponse;
 
@@ -12,6 +14,11 @@ import java.util.List;
 @RestController
 public class ProductController {
     private final ProductService productService;
+
+    @PostMapping("/api/v1/products/new")
+    public void creatProduct(ProductCreateRequest request) {
+        productService.createProduct(request);
+    }
 
     @GetMapping("/api/v1/products/selling")
     public List<ProductResponse> getSellingProducts() {

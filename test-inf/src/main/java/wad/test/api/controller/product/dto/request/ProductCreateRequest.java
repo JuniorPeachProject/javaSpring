@@ -2,23 +2,31 @@ package wad.test.api.controller.product.dto.request;
 
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import wad.test.api.service.product.request.ProductCreateServiceRequest;
 import wad.test.domain.product.Product;
 import wad.test.domain.product.ProductSellingStatus;
 import wad.test.domain.product.ProductType;
 
+@NoArgsConstructor //object Mapper가 필요로 한다!
 @Getter
 public class ProductCreateRequest {
-    private String productNumber;
+    @NotNull(message = "상품 타입은 필수입니다.")
     private ProductType type;
+    @NotNull(message = "상품 판매상태는 필수입니다.")
     private ProductSellingStatus sellingStatus;
+    @NotBlank(message = "상품 이름은 필수입니다.")
     private String name;
+    @Positive(message = "상품 가격은 양수여야 합니다.")
     private int price;
 
     @Builder
-    public ProductCreateRequest(String productNumber, ProductType type, ProductSellingStatus sellingStatus, String name, int price) {
-        this.productNumber = productNumber;
+    public ProductCreateRequest(ProductType type, ProductSellingStatus sellingStatus, String name, int price) {
         this.type = type;
         this.sellingStatus = sellingStatus;
         this.name = name;
@@ -33,5 +41,14 @@ public class ProductCreateRequest {
                 .name(name)
                 .price(price)
                 .build();
+    }
+
+    public ProductCreateServiceRequest toServiceRequest() {
+        return ProductCreateServiceRequest.builder()
+            .type(type)
+            .sellingStatus(sellingStatus)
+            .name(name)
+            .price(price)
+            .build();
     }
 }

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import wad.test.api.controller.order.request.OrderCreateRequest;
 import wad.test.api.controller.order.response.OrderResponse;
+import wad.test.api.service.order.request.OrderCreateServiceRequest;
 import wad.test.domain.order.Order;
 import wad.test.domain.order.OrderRepository;
 import wad.test.domain.product.Product;
@@ -33,7 +34,7 @@ public class OrderService {
      * 재고 감소 -> 동시성 고민
      * optimistic lock / pessimistic lock / ...
      */
-    public OrderResponse createOrder(OrderCreateRequest request, LocalDateTime registeredDateTime) {
+    public OrderResponse createOrder(OrderCreateServiceRequest request, LocalDateTime registeredDateTime) {
         List<String> productNumbers = request.getProductNumbers();
         // Product
         List<Product> products = findProductsBy(productNumbers);

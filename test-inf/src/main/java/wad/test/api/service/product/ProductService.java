@@ -1,23 +1,24 @@
 package wad.test.api.service.product;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import wad.test.api.controller.product.dto.request.ProductCreateRequest;
 import wad.test.api.service.product.request.ProductCreateServiceRequest;
 import wad.test.api.service.product.response.ProductResponse;
 import wad.test.domain.product.Product;
 import wad.test.domain.product.ProductRepository;
 import wad.test.domain.product.ProductSellingStatus;
-import wad.test.domain.product.ProductType;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Transactional(readOnly = true)
-@RequiredArgsConstructor
 @Service
 public class ProductService {
+
+    public ProductService(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
+
     private final ProductRepository productRepository;
 
     public List<ProductResponse> getSellingProducts() {
@@ -56,4 +57,3 @@ public class ProductService {
         return String.format("%03d",nextProductNumber);
     }
 }
-

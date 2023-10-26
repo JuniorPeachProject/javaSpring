@@ -6,5 +6,4 @@ public interface StackInterface<E> {
     public E top();
     public boolean isEmpty();
     public void popAll();
-    public boolean isFull();
 }

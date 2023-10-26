@@ -47,7 +47,6 @@ public class ArrayStack<E> implements StackInterface<E>{
         topIndex = -1;
     }
 
-    @Override
     public boolean isFull() {
         return topIndex + 1 >= DEFAULT_CAPACITY;
     }
